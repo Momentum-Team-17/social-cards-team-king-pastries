@@ -7,6 +7,7 @@ import Profile from './components/profile.js'
 import Navbar from './components/navbar'
 import useLocalStorageState from 'use-local-storage-state'
 import { Route, Routes } from 'react-router-dom'
+// import { NotFound } from "./notFound.js"
 
 
 
@@ -27,13 +28,10 @@ function App() {
         <Route path='/' element= {<CardList />} />
         <Route path='/new' element= {<NewCard />} />
         <Route path='/profile' element= {<Profile />} />
-        {/* <Route path='/cardview' element= {<Cards />} /> */}
+        {/* <Route path='*' element= {<NotFound />} /> */}
         {/* <Route path='/login' element= {<LogIn />} />
         <Route path='/logout' element= {<LogOut />} /> */}
       </Routes>
-      {/* <Cards />
-      <CardList />
-      <Profile />  */}
     </>
   );
 }
