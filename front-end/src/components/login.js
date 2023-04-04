@@ -8,25 +8,22 @@ const Login = ({ setAuth }) => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const navigate = useNavigate();
-    // const [login, setLogin] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log(event)
         console.log(username)
         console.log(password)
-        // ADD URL FROM DJOSER
         axios.post('https://social-cards-app.onrender.com/auth/token/login/', {
             username: username,
             password: password,
             // headers: { Authorization: `Token ${token}` }
         }).then(res => {
-            const token = res.data.auth_token;
-            setAuth(username, token);
+            // const token = res.data.auth_token;
+            setAuth(res.data.auth_token, username);
             console.log(res.data);
-            navigate("/");
+            navigate('/');
         })
-        // .catch((e) => {
     };
 
 
