@@ -9,24 +9,17 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Navbar({ token, setAuth }) {
     const [expanded, setExpanded] = useState(false)
+    const navigate = useNavigate();
 
-    const Logout = ({ token, setAuth }) => {
-        const navigate = useNavigate();
-
-        const handleLogout = (event) => {
-            axios.post('https://social-cards-app.onrender.com/auth/token/logout/',
-                {
-                    headers: { Authorization: `Token ${token}` }
-                }).then(res => {
-                    setAuth("", null);
-                    navigate('/login');
-                })
-        };
-
-        return (
-            <li><a href="/login">Logout</a></li>
-        )
-    }
+    const handleLogout = (event) => {
+        axios.post('https://social-cards-app.onrender.com/auth/token/logout/',
+            {
+                headers: { Authorization: `Token ${token}` }
+            }).then(res => {
+                setAuth("", null);
+                navigate('/login');
+            })
+    };
 
     return (
         <header className='header'>
@@ -39,7 +32,7 @@ export default function Navbar({ token, setAuth }) {
                         <li><a href="/">Home</a></li>
                         <li><a href="/profile">My Profile</a></li>
                         <li><a href="/new">Make a new card</a></li>
-                        <li onClick={Logout(token, setAuth)}>Logout</li>
+                        <li><a onClick={handleLogout} href="/login">Logout</a></li>
                     </div>}
                     <button className='hamburger' onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
                         <FaBars />
@@ -47,6 +40,5 @@ export default function Navbar({ token, setAuth }) {
                 </div>
             </nav>
         </header >
-    )
+    );
 }
-

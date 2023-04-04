@@ -21,7 +21,7 @@ const Login = ({ setAuth }) => {
         }).then(res => {
             setAuth(res.data.auth_token, username);
             console.log(res.data);
-            navigate('/');
+            navigate("/");
         })
     };
 
