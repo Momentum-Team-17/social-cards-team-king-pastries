@@ -7,7 +7,7 @@ export default function Profile(username, token) {
 
     return (
         <>
-        <button className='hamburger' onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
+        <button className='profile-icon' onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
             <CgProfile />
         </button>
             <div> username </div>
