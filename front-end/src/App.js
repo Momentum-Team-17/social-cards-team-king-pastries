@@ -31,7 +31,7 @@ function App() {
           <Navbar />
           <Routes>
 
-            <Route path='/Profile' element={<Profile username={username} token={token} />} />
+            <Route path='/profile' element={<Profile username={username} token={token} />} />
             <Route path='/' element={<CardList />} />
             <Route path='/new' element={<NewCard />} />
             <Route path='/profile' element={<Profile />} />

@@ -1,9 +1,32 @@
 import { FaBars } from 'react-icons/fa'
 import { useState } from 'react'
+import axios from 'axios'
 import "../styles/navbar.css"
+import { useNavigate } from 'react-router-dom'
 
-function Navbar({ handleClick }) {
+
+
+
+export default function Navbar({ token, setAuth }) {
     const [expanded, setExpanded] = useState(false)
+
+    const Logout = ({ token, setAuth }) => {
+        const navigate = useNavigate();
+
+        const handleLogout = (event) => {
+            axios.post('https://social-cards-app.onrender.com/auth/token/logout/',
+                {
+                    headers: { Authorization: `Token ${token}` }
+                }).then(res => {
+                    setAuth("", null);
+                    navigate('/login');
+                })
+        };
+
+        return (
+            <li><a href="/login">Logout</a></li>
+        )
+    }
 
     return (
         <header className='header'>
@@ -16,16 +39,14 @@ function Navbar({ handleClick }) {
                         <li><a href="/">Home</a></li>
                         <li><a href="/profile">My Profile</a></li>
                         <li><a href="/new">Make a new card</a></li>
-                        <li><a onClick={handleClick} href="/login">Logout</a></li>
+                        <li onClick={Logout(token, setAuth)}>Logout</li>
                     </div>}
                     <button className='hamburger' onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
                         <FaBars />
                     </button>
                 </div>
             </nav>
-        </header>
+        </header >
     )
 }
-
-export default Navbar;
 
