@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { CgProfile } from 'react-icons/cg'
 
 
-export default function Profile() {
+export default function Profile(username, token) {
         const [expanded, setExpanded] = useState(false)
+
     return (
         <>
         <button className='hamburger' onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>

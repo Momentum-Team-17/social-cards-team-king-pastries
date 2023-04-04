@@ -4,7 +4,9 @@ import NewCard from './new-card.js'
 import Cards from './components/cards.js'
 import CardList from './components/cardList.js'
 import Profile from './components/profile.js'
-import Navbar from './components/navbar'
+import Navbar from './components/navbar.js'
+import Login from './components/login.js'
+import Registration from './components/newuser.js'
 import useLocalStorageState from 'use-local-storage-state'
 import { Route, Routes } from 'react-router-dom'
 // import { NotFound } from "./notFound.js"
@@ -20,6 +22,7 @@ function App() {
     setUsername(username)
   }
 
+  const loggedIn = token
 
   return (
     <>
