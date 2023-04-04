@@ -7,6 +7,7 @@ import Profile from './components/profile.js'
 import Navbar from './components/navbar.js'
 import Login from './components/login.js'
 import Registration from './components/newuser.js'
+import axios from 'axios'
 import useLocalStorageState from 'use-local-storage-state'
 import { Route, Routes } from 'react-router-dom'
 
@@ -25,21 +26,25 @@ function App() {
 
   return (
     <>
-      <Navbar />
       {loggedIn ? (
-        <Routes>
-          <Route path='/Profile' element={<Profile username={username} token={token} />} />
-          <Route path='/' element={<CardList />} />
-          <Route path='/new' element={<NewCard />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/cardview' element={<Cards />} />
-          <Route path='/login' element={<Login setAuth={setAuth} />} />
-          {/* <Route path='/logout' element={<LogOut />} /> */}
-        </Routes>
+        <>
+          <Navbar />
+          <Routes>
+
+            <Route path='/Profile' element={<Profile username={username} token={token} />} />
+            <Route path='/' element={<CardList />} />
+            <Route path='/new' element={<NewCard />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/cardview' element={<Cards />} />
+            <Route path='/login' element={<Login setAuth={setAuth} />} />
+          </Routes>
+        </>
       ) : (
-        <Routes>
-          <Route path='/login' element={<Login setAuth={setAuth} />} />
-        </Routes>)
+        <div>
+          <Routes>
+            <Route path='/' element={loggedIn ? <CardList /> : <Login setAuth={setAuth} />} />
+          </Routes>
+        </div>)
       }</>
   );
 }
