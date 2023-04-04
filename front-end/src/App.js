@@ -26,13 +26,15 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path='/' element= {<CardList />} />
-        <Route path='/new' element= {<NewCard />} />
-        <Route path='/profile' element= {<Profile />} />
-        {/* <Route path='*' element= {<NotFound />} /> */}
-        {/* <Route path='/login' element= {<LogIn />} />
+<Navbar/>
+      {loggedIn ? (
+        <Routes>
+          <Route path='/Profile' element={<Profile username={username} token={token} />} />
+          <Route path='/' element={<CardList />} />
+          <Route path='/new' element={<NewCard />} />
+          <Route path='/profile' element={<Profile />} />
+          {/* <Route path='/cardview' element= {<Cards />} /> */}
+          {/* <Route path='/login' element= {<LogIn />} />
         <Route path='/logout' element= {<LogOut />} /> */}
       </Routes>
     </>
