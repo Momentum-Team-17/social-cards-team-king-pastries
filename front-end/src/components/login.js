@@ -1,3 +1,4 @@
+import '../App.css';
 import { useState } from 'react'
 import axios from 'axios'
 import Error from './error.js'
@@ -17,9 +18,7 @@ const Login = ({ setAuth }) => {
         axios.post('https://social-cards-app.onrender.com/auth/token/login/', {
             username: username,
             password: password,
-            // headers: { Authorization: `Token ${token}` }
         }).then(res => {
-            // const token = res.data.auth_token;
             setAuth(res.data.auth_token, username);
             console.log(res.data);
             navigate('/');
@@ -29,37 +28,42 @@ const Login = ({ setAuth }) => {
 
     return (
         <>
-            <h1>Log In</h1>
-            <div className='login-form'> 
-            <form onFocus={() => setError(null)} onSubmit={handleSubmit}>
-                <div>
-                    <label> <span>username</span></label>
-                    <input
-                        type='text'
-                        name='username'
-                        id='username'
-                        value={username}
-                        required
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
+            <h1 className='loginHeader'>Log In</h1>
+            <div className='login-form'>
+                <form onFocus={() => setError(null)} onSubmit={handleSubmit}>
+                    <div className='usernameForm'>
+                        <label> <span>username: </span></label>
+                        <input
+                            type='text'
+                            name='username'
+                            id='username'
+                            value={username}
+                            required
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
 
-                </div>
-                <div>
-                    <label><span>password</span></label>
-                    <input
-                        type='password'
-                        name='password'
-                        id='password'
-                        value={password}
-                        required
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                    </div>
+                    <div className='passwordForm'>
+                        <label><span>password: </span></label>
+                        <input
+                            type='password'
+                            name='password'
+                            id='password'
+                            value={password}
+                            required
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <button className="submitLoginButton" type='submit'>Submit!</button>
+                    </div>
+                    <div className="signUp">
+                        <p> Not a member yet? </p>
+                        <a className="signUpLink" href="/auth/users/">Sign up!</a>
+                    </div>
 
-                </div>
-                <div>
-                    <button type='submit'>Submit!</button>
-                </div>
-            </form>
+
+                </form>
             </div>
             {error && <Error message={error.message} />}
         </>
