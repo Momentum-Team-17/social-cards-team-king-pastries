@@ -32,10 +32,10 @@ function App() {
           <Routes>
 
             <Route path='/profile' element={<Profile username={username} token={token} />} />
-            <Route path='/' element={<CardList />} />
-            <Route path='/new' element={<NewCard />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/cardview' element={<Cards />} />
+            <Route path='/' element={<CardList username={username} token={token} />} />
+            <Route path='/new' element={<NewCard username={username} token={token} />} />
+            <Route path='/profile' element={<Profile username={username} token={token} />} />
+            <Route path='/cardview' element={<Cards username={username} token={token} />} />
             <Route path='/login' element={<Login setAuth={setAuth} />} />
           </Routes>
         </>

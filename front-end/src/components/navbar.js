@@ -11,13 +11,17 @@ export default function Navbar({ token, setAuth }) {
     const [expanded, setExpanded] = useState(false)
     const navigate = useNavigate();
 
-    const handleLogout = (event) => {
+    const handleLogout = () => {
+        console.log('logouttime')
         axios.post('https://social-cards-app.onrender.com/auth/token/logout/',
+            {},
             {
-                headers: { Authorization: `Token ${token}` }
-            }).then(res => {
+                headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' }
+
+            }).then(() => {
                 setAuth("", null);
-                navigate('/login');
+                navigate('/');
+                console.log('logout is happening')
             })
     };
 
@@ -32,7 +36,7 @@ export default function Navbar({ token, setAuth }) {
                         <li><a href="/">Home</a></li>
                         <li><a href="/profile">My Profile</a></li>
                         <li><a href="/new">Make a new card</a></li>
-                        <li><a onClick={handleLogout} href="/login">Logout</a></li>
+                        <li onClick={handleLogout}>Logout</li>
                     </div>}
                     <button className='hamburger' onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
                         <FaBars />
